@@ -1,0 +1,33 @@
+{
+  "name": "twig-gettext-scrape",
+  "version": "0.1.0",
+  "description": "",
+  "homepage": "https://github.com/r4wizard/twig-gettext-scrape",
+  "author": {
+    "name": "Peter Corcoran",
+    "email": "peter@lemondigits.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/r4wizard/twig-gettext-scrape.git"
+  },
+  "bugs": {
+    "url": "https://github.com/r4wizard/twig-gettext-scrape/issues"
+  },
+  "licenses": [
+    {
+      "type": "LGPL",
+      "url": "https://github.com/r4wizard/twig-gettext-scrape/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "main": "src/node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jed": "^1.1.0"
+  }
+}
