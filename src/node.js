@@ -41,6 +41,10 @@ GT.prototype.setLocale = function(locale) {
 	this.locale = locale || "en_GB";
 };
 
+GT.prototype.getLocale = function(locale) {
+	return this.locale;
+};
+
 GT.prototype.gettext = function(key) {
 	try {
 		return this.i18n.dgettext(this.domain + "-" + this.locale, key);
@@ -58,6 +62,7 @@ GT.prototype.bindTwig = function(Twig) {
 	Twig.extendFunction("gettext", this.gettext.bind(this));
 	Twig.extendFunction("__n", this.ngettext.bind(this));
 	Twig.extendFunction("ngettext", this.ngettext.bind(this));
+	Twig.extendFunction("locale", this.getLocale.bind(this));
 };
 
 module.exports = GT;
