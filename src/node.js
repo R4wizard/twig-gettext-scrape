@@ -53,8 +53,20 @@ GT.prototype.gettext = function(key) {
 
 GT.prototype.ngettext = function(single_key, plural_key, value) {
 	try {
-		return this.i18n.dngettext(this.domain + "-" + this.locale, single_key, plural_key, value);
+		var response = this.i18n.dngettext(this.domain + "-" + this.locale, single_key, plural_key, value);
+		return response.replace(/%1/g, value);
 	} catch(e) { return plural_key; }
+};
+
+GT.prototype.sgettext = function(key) {
+	try {
+		key = this.i18n.dgettext(this.domain + "-" + this.locale, key);
+	} catch(e) { }
+
+	for(var i = 1; i < arguments.length; i++)
+		key = key.replace(new RegExp("%" + i, "g"), arguments[i]);
+
+	return key;
 };
 
 GT.prototype.bindTwig = function(Twig) {
@@ -62,6 +74,8 @@ GT.prototype.bindTwig = function(Twig) {
 	Twig.extendFunction("gettext", this.gettext.bind(this));
 	Twig.extendFunction("__n", this.ngettext.bind(this));
 	Twig.extendFunction("ngettext", this.ngettext.bind(this));
+	Twig.extendFunction("__s", this.sgettext.bind(this));
+	Twig.extendFunction("sgettext", this.sgettext.bind(this));
 	Twig.extendFunction("locale", this.getLocale.bind(this));
 };
 
